@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grave of the Fireflies - Anime Recommendations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+            color: #333;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .logo i {
+            color: #e74c3c;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+        
+        nav a:hover {
+            color: #e74c3c;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 40px 0 30px;
+            font-size: 36px;
+            color: #2c3e50;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .page-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #e74c3c;
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .page-subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eee;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .anime-name {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .anime-type {
+            background: #e74c3c;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .detail i {
+            width: 30px;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+        
+        .user-message {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #2c3e50;
+            font-style: italic;
+        }
+        
+        .date {
+            color: #7f8c8d;
+            font-size: 14px;
+            text-align: right;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 5px;
+        }
+        
+        .stats {
+            background: #f8f9fa;
+            padding: 40px 0;
+            margin: 60px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 40px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .recommendations {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .page-subtitle {
+                font-size: 16px;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-fire"></i>
+                    <span>Grave of the Fireflies</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-film"></i> Anime</a></li>
+                        <li><a href="#"><i class="fas fa-heart"></i> Recommendations</a></li>
+                        <li><a href="#"><i class="fas fa-users"></i> Community</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h1 class="page-title">Anime Recommendations</h1>
+        <p class="page-subtitle"> </p>
+        
+        <div class="recommendations">
+            <!-- Recommendation 1 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="anime-name">Gangsta</div>
+                    <div class="anime-type">Series</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Mahi</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Action, Drama, Crime</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> Good story and action
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 21, 2025 at 3:17 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 2 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="anime-name">Naruto</div>
+                    <div class="anime-type">Series</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Mahiiiii</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Adventure, Shounen, Martial Arts</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> Because someone special suggested it
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 21, 2025 at 4:10 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 3 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="anime-name">Death Note</div>
+                    <div class="anime-type">Movie</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Giridharan</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Horror, Psychological, Thriller</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> Horror anime
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 23, 2025 at 10:31 PM
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats">
+            
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for the cards when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach((card, index) => {
+                // Add slight delay for staggered animation
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('fade-in');
+            });
+        });
+    </script>
+</body>
+</html>
