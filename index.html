@@ -114,6 +114,13 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid #eee;
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .card:hover {
@@ -211,6 +218,30 @@
             font-weight: 600;
         }
         
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #2c3e50;
+            color: white;
+            border-color: #2c3e50;
+        }
+        
         @media (max-width: 768px) {
             .recommendations {
                 grid-template-columns: 1fr;
@@ -239,6 +270,11 @@
                 flex-direction: column;
                 gap: 10px;
             }
+            
+            .filter-bar {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -264,11 +300,18 @@
     
     <div class="container">
         <h1 class="page-title">Anime Recommendations</h1>
-        <p class="page-subtitle"> </p>
+        <p class="page-subtitle">Discover new anime based on recommendations from our community</p>
+        
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="series">Series</button>
+            <button class="filter-btn" data-filter="movie">Movies</button>
+            <button class="filter-btn" data-filter="fireflies">Grave of the Fireflies</button>
+        </div>
         
         <div class="recommendations">
             <!-- Recommendation 1 -->
-            <div class="card">
+            <div class="card" data-type="series">
                 <div class="card-header">
                     <div class="anime-name">Gangsta</div>
                     <div class="anime-type">Series</div>
@@ -292,7 +335,7 @@
             </div>
             
             <!-- Recommendation 2 -->
-            <div class="card">
+            <div class="card" data-type="series">
                 <div class="card-header">
                     <div class="anime-name">Naruto</div>
                     <div class="anime-type">Series</div>
@@ -316,7 +359,7 @@
             </div>
             
             <!-- Recommendation 3 -->
-            <div class="card">
+            <div class="card" data-type="movie">
                 <div class="card-header">
                     <div class="anime-name">Death Note</div>
                     <div class="anime-type">Movie</div>
@@ -338,23 +381,479 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Recommendation 4 -->
+            <div class="card" data-type="series">
+                <div class="card-header">
+                    <div class="anime-name">Uzaki chan wants to hangout</div>
+                    <div class="anime-type">Series</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Mahiiiiiii</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Comedy, Slice of Life, Romance</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> I think good anime 😌
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 24, 2025 at 1:59 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 5 -->
+            <div class="card" data-type="movie">
+                <div class="card-header">
+                    <div class="anime-name">Demon Slayer Infinity Castle</div>
+                    <div class="anime-type">Movie</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Unknown</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Action, Fantasy, Supernatural</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> Because of it's animation style and graphics also story line
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 24, 2025 at 2:35 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 6 -->
+            <div class="card" data-type="series">
+                <div class="card-header">
+                    <div class="anime-name">Summer time rendering</div>
+                    <div class="anime-type">Series</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Bose</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Mystery, Supernatural, Thriller</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> It's a good anime with some time loops
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 24, 2025 at 9:24 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 7 -->
+            <div class="card" data-type="movie" data-fireflies="true">
+                <div class="card-header">
+                    <div class="anime-name">Grave of the fireflies</div>
+                    <div class="anime-type">Movie</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Angel</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Drama, Historical</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> Saya ingin menontonn
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 25, 2025 at 2:40 AM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 8 -->
+            <div class="card" data-type="movie" data-fireflies="true">
+                <div class="card-header">
+                    <div class="anime-name">Grave of the fire flies</div>
+                    <div class="anime-type">Movie</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Devi</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Drama, Historical</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> My favourite
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 25, 2025 at 8:54 AM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 9 -->
+            <div class="card" data-type="series">
+                <div class="card-header">
+                    <div class="anime-name">Hajime no ippo</div>
+                    <div class="anime-type">Series</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Aman</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Sports, Comedy, Drama</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> Inspirational, good humor,good story
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 25, 2025 at 10:50 AM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 10 -->
+            <div class="card" data-type="series">
+                <div class="card-header">
+                    <div class="anime-name">Attack on titan</div>
+                    <div class="anime-type">Series</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Gurucharan S</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Action, Drama, Fantasy</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> it's a rollercoaster of emotions with insane action and a gripping story! The way it mixes intense Titan battles, deep character arcs like Eren's, and mind-bending plot twists keeps you hooked. The animation is top-notch, and the themes of survival, freedom, and sacrifice hit hard, making it more than just an anime—it's a whole vibe that pulls you in and doesn't let go!
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 25, 2025 at 7:14 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 11 -->
+            <div class="card" data-type="movie" data-fireflies="true">
+                <div class="card-header">
+                    <div class="anime-name">Grave of the fireflies</div>
+                    <div class="anime-type">Movie</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: nonaria</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Drama, Historical</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> bismillah
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 28, 2025 at 3:52 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 12 -->
+            <div class="card" data-type="series">
+                <div class="card-header">
+                    <div class="anime-name">Gugure kokuri san</div>
+                    <div class="anime-type">Series</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Levi _dattebayo</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Comedy, Supernatural</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> Idk just radom
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 29, 2025 at 3:04 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 13 -->
+            <div class="card" data-type="movie" data-fireflies="true">
+                <div class="card-header">
+                    <div class="anime-name">The grave of the fireflies</div>
+                    <div class="anime-type">Movie</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Sonal</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Drama, Historical</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> Nice
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 29, 2025 at 10:36 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 14 -->
+            <div class="card" data-type="movie" data-fireflies="true">
+                <div class="card-header">
+                    <div class="anime-name">Grave of the fireflies</div>
+                    <div class="anime-type">Movie</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Kawithiubou abonmai</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Drama, Historical</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> It heals a broken people
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 30, 2025 at 9:46 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 15 -->
+            <div class="card" data-type="series" data-fireflies="true">
+                <div class="card-header">
+                    <div class="anime-name">Grave of the fireflies</div>
+                    <div class="anime-type">Series</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Ashish</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Drama, Historical</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> Need it very badly
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 31, 2025 at 10:07 AM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 16 -->
+            <div class="card" data-type="series" data-fireflies="true">
+                <div class="card-header">
+                    <div class="anime-name">Grave of the fireflies</div>
+                    <div class="anime-type">Series</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: PAsya</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Drama, Historical</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> I love anime
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 31, 2025 at 6:34 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 17 -->
+            <div class="card" data-type="series" data-fireflies="true">
+                <div class="card-header">
+                    <div class="anime-name">Grave of the fireflies</div>
+                    <div class="anime-type">Series</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Pasya</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Drama, Historical</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> I love anime
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 31, 2025 at 6:36 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 18 -->
+            <div class="card" data-type="series" data-fireflies="true">
+                <div class="card-header">
+                    <div class="anime-name">Grave of the fireflies</div>
+                    <div class="anime-type">Series</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Apasya</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Drama, Historical</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> I love anime, and I like, and thanks for telegram
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> August 31, 2025 at 6:37 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 19 -->
+            <div class="card" data-type="movie" data-fireflies="true">
+                <div class="card-header">
+                    <div class="anime-name">Grave of butterflies</div>
+                    <div class="anime-type">Movie</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Pallavi</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Drama, Historical</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> Coz it's amazing
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> September 1, 2025 at 10:41 PM
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommendation 20 -->
+            <div class="card" data-type="movie" data-fireflies="true">
+                <div class="card-header">
+                    <div class="anime-name">Grave of the fireflies</div>
+                    <div class="anime-type">Movie</div>
+                </div>
+                <div class="card-body">
+                    <div class="detail">
+                        <i class="fas fa-user"></i>
+                        <span>Recommended by: Om Verma</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-film"></i>
+                        <span>Genre: Drama, Historical</span>
+                    </div>
+                    <div class="user-message">
+                        <i class="fas fa-quote-left"></i> I watched a reel and now I want to watch full movie
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar"></i> September 2, 2025 at 6:01 PM
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="stats">
-            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">20</div>
+                    <div class="stat-label">Total Recommendations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Grave of the Fireflies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">11</div>
+                    <div class="stat-label">Series</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Movies</div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Simple animation for the cards when they come into view
+        // Animation for the cards when they come into view
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.card');
             
             cards.forEach((card, index) => {
                 // Add slight delay for staggered animation
                 card.style.animationDelay = `${index * 0.1}s`;
-                card.classList.add('fade-in');
+            });
+            
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    cards.forEach(card => {
+                        if (filter === 'all') {
+                            card.style.display = 'block';
+                        } else if (filter === 'fireflies') {
+                            if (card.getAttribute('data-fireflies') === 'true') {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        } else {
+                            if (card.getAttribute('data-type') === filter) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
             });
         });
     </script>
